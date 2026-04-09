@@ -1,0 +1,33 @@
+DSCI 510 – Spring 2026 – University of Southern California
+Instructor: Dr. Alexey Tregubov
+Final Project Progress Report [40 points]
+Due: Wednesday April 8, 2026 11:59pm PT .
+Submission:
+Use your existing github project that you created in the lab session or create a new public
+repository for your final project and submit the link to that repository in Brightspace. You
+will not be submitting files on Brightspace for this assignment.
+Copy the sample project to your repository and update to fit your project needs (naming,
+documentation, python files/classes/functions, etc.).
+Inside the doc/ folder place your progress report as a pdf file. Length of the report should
+not be more than one page.
+Update code of your project and demonstrate that you are able to obtain data from at least
+one API data source. Add test code in your tests.py so we can run it too. Don’t forget to
+update .gitignore, readme.md, requirements.txt .
+Important:
+●
+●
+●
+Do not commit your .env or kaggle.json in the repository. Grade will be significantly
+deducted if you do.
+Do not commit your data (everything in data/ directory) in the repository, include
+them in gitignore. Grade will be significantly deducted if you do.
+Do not commit your results (everything in results/ directory) in the repository,
+include them in gitignore. Grade will be significantly deducted if you do.
+Progress report document structure:
+Project scope update
+<describe if anything changed since you started working on the project>
+Data sources
+<Describe data obtained in your python code>
+<Describe API you used>
+Issues / difficulties
+<Describe any issues you faced so far or what potential issues you expect>
