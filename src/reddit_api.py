@@ -65,12 +65,7 @@ def fetch_reddit_posts(
 
 def count_reddit_symptoms(posts):
     symptom_keywords = {
-        "Cycle irregularity": [
-            "irregular period", "irregular periods", "missed period",
-            "late period", "no period", "skipped period",
-            "cycle is off", "cycle irregular", "cycle problems",
-            "period hasn't come", "amenorrhea"
-        ],
+        
         "Weight gain": [
             "weight gain", "gained weight", "put on weight",
             "can't lose weight", "hard to lose weight",
