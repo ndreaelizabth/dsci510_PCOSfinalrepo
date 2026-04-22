@@ -6,8 +6,7 @@ import matplotlib.pyplot as plt
 
 from kaggle_pcosdata import load_pcos_data
 
-
-def run_medical_random_forest(file_path="data/PCOS_data.csv"):
+def run_medical_random_forest(file_path="../data/PCOS_data.csv"):
     df = pd.read_csv(file_path)
     df.columns = df.columns.str.strip()
 

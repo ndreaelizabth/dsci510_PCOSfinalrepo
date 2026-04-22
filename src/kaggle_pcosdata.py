@@ -1,10 +1,15 @@
 #AI generated: portions of this file were created with assistance of ChatGPT
 
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def load_pcos_data(file_path="data/PCOS_data.csv"):
+def load_pcos_data(file_path="../data/PCOS_data.csv"):
+    if file_path is None:
+        current_dir = os.path.dirname(__file__)
+        file_path = os.path.join(current_dir, "..", "data", "PCOS_data.csv")
+
     df = pd.read_csv(file_path)
     df.columns = df.columns.str.strip()
 

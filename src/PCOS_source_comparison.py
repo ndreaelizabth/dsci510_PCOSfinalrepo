@@ -7,7 +7,6 @@ from scipy.stats import spearmanr
 from kaggle_pcosdata import load_pcos_data, calculate_symptom_percentages
 from reddit_api import fetch_reddit_posts, count_reddit_symptoms
 
-
 def prepare_medical_data():
     df = load_pcos_data()
     medical_df = calculate_symptom_percentages(df).copy()

@@ -43,6 +43,8 @@ python medical_random_forest.py'
 
 Results will appear in `results/` folder. All obtained data will be stored in `data/`.
 
+The primary project workflow is run through `main.py`. The notebook is included only as an optional interactive visualization layer that calls existing functions from the `src/` modules.
+
 ## AI generated:
 ChatGPT (OpenAI) was used as a coding assistant to help structure, debug, and refine portions of this project, including API handling, data processing, visualization, and model implementation. 
 
