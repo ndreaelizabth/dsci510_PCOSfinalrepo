@@ -1,3 +1,5 @@
+#AI generated: portions of this file were created with assistance of ChatGPT
+
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt

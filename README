@@ -1,29 +1,46 @@
 DSCI 510 – Spring 2026 – University of Southern California
 Instructor: Dr. Alexey Tregubov
 
-# PCOS Prediction Project
-
-## Introduction
-This project explores factors that may predict Polycystic Ovary Syndrome (PCOS) using clinical and public data sources. The goal is to identify which symptoms, hormone-related variables, and related signals are most associated with PCOS diagnosis.
+# Research on PCOS: Using Clinical Data and Reddit Analysis
+This project explores factors that may predict Polycystic Ovary Syndrome (PCOS) using clinical and public data sources. This project compares clinical PCOS data with real-world patient discussions from Reddit to implement data analysis and machine learning.
 
 ## Data sources
 1. Kaggle PCOS dataset (CSV)
 2. Reddit API - r/PCOS subreddit
-3. Google Trends data related to PCOS
-4. PubMed data on PCOS risk factors
 
-## Analysis
-The project will use Python to collect and organize data, perform exploratory data analysis, and later build classification models such as logistic regression and random forest.
+## Results
+- Identified most common symptoms among PCOS patients (clinical data)
+- Extracted and ranked symptoms discussed on Reddit
+- Compared clinical prevalence vs patient discussion
+- Found differences between what is clinically important vs commonly discussed
+- Used Random Forest to identify most predictive symptoms for PCOS
+- Measured alignment between sources using scatterplot and correlation
 
-## Summary of the results
-In progress.
+## Installation
+- No API keys are required to run this project.
+- Install required Python packages using:
 
-## How to run
-1. Install dependencies:
-   `pip install -r requirements.txt`
+pip install -r requirements.txt
 
-2. Run the Reddit API script:
-   `python src/reddit_api.py`
+Required libraries include:
+- pandas
+- matplotlib
+- scikit-learn
+- requests
+- scipy
 
-3. Run tests:
-   `python tests.py`
+## Running analysis
+
+From `src/` directory run:
+
+'python kaggle_pcosdata.py, 
+python reddit_api.py,
+python compare_symptoms.py,
+python medical_random_forest.py'
+
+Results will appear in the project root directory as `.png` files. All obtained data will be stored in `data/`.
+
+## AI generated:
+ChatGPT (OpenAI) was used as a coding assistant to help structure, debug, and refine portions of this project, including API handling, data processing, visualization, and model implementation. 
+
+All generated outputs were reviewed, modified, and integrated by the author, who ensured complete understanding of the final code.

@@ -2,3 +2,6 @@ requests
 pandas
 pytrends
 sckit-learn
+matplotlib
+time
+scipy

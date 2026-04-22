@@ -1,3 +1,5 @@
+#AI generated: portions of this file were created with assistance of ChatGPT
+
 import requests
 import time
 import pandas as pd
