@@ -41,7 +41,7 @@ python reddit_api.py,
 python compare_symptoms.py,
 python medical_random_forest.py'
 
-Results will appear in the project root directory as `.png` files. All obtained data will be stored in `data/`.
+Results will appear in `results/` folder. All obtained data will be stored in `data/`.
 
 ## AI generated:
 ChatGPT (OpenAI) was used as a coding assistant to help structure, debug, and refine portions of this project, including API handling, data processing, visualization, and model implementation. 
