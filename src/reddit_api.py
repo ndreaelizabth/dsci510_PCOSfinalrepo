@@ -46,34 +46,58 @@ def fetch_reddit_posts(subreddit="PCOS", total_limit=300, batch_size=100):
 
 
 def count_reddit_symptoms(posts):
+    
     symptom_keywords = {
-        "Cycle irregularity": [
-            "irregular period", "irregular periods", "missed period",
-            "late period", "period is late", "cycle irregular", "cycle"
-        ],
-        "Weight gain": [
-            "weight gain", "gained weight", "can't lose weight",
-            "hard to lose weight", "weight"
-        ],
-        "Hair growth": [
-            "hair growth", "facial hair", "chin hair", "body hair", "hirsutism"
-        ],
-        "Skin darkening": [
-            "skin darkening", "dark skin", "dark patches", "acanthosis", "neck darkening"
-        ],
-        "Hair loss": [
-            "hair loss", "losing hair", "thinning hair", "balding"
-        ],
-        "Pimples": [
-            "pimples", "acne", "breakouts"
-        ],
-        "Fast food": [
-            "fast food", "junk food"
-        ],
-        "Regular exercise": [
-            "exercise", "working out", "workout", "gym", "walking", "walk"
-        ]
-    }
+
+    "Cycle irregularity": [
+        "irregular period", "irregular periods", "missed period",
+        "late period", "no period", "skipped period",
+        "cycle is off", "cycle irregular", "cycle problems",
+        "period hasn't come", "amenorrhea"
+    ],
+
+    "Weight gain": [
+        "weight gain", "gained weight", "put on weight",
+        "can't lose weight", "hard to lose weight",
+        "weight won't budge", "struggling to lose weight",
+        "gaining weight", "losing weight is hard"
+    ],
+
+    "Hair growth": [
+        "facial hair", "chin hair", "upper lip hair",
+        "body hair", "excess hair", "hair growth",
+        "hirsutism", "thick hair on face"
+    ],
+
+    "Skin darkening": [
+        "dark skin", "dark patches", "skin darkening",
+        "dark neck", "neck darkening", "acanthosis",
+        "dark underarms"
+    ],
+
+    "Hair loss": [
+        "hair loss", "losing hair", "hair falling out",
+        "thinning hair", "bald spots", "hair shedding",
+        "losing so much hair"
+    ],
+
+    "Pimples / acne": [
+        "acne", "pimples", "breakouts",
+        "cystic acne", "bad acne", "skin breaking out"
+    ],
+
+    "Fast food / diet": [
+        "fast food", "junk food", "bad diet",
+        "eating unhealthy", "diet issues", "sugar cravings",
+        "craving sugar", "carbs", "processed food"
+    ],
+
+    "Exercise / lifestyle": [
+        "exercise", "working out", "workout",
+        "gym", "walking", "walk",
+        "sedentary", "not active"
+    ]
+}
 
     counts = {symptom: 0 for symptom in symptom_keywords}
 
