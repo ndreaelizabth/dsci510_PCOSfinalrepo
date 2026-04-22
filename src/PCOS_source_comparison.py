@@ -1,11 +1,16 @@
-#AI generated: portions of this file were created with assistance of ChatGPT
-
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
 
+from config import COMPARISON_CHART, SCATTERPLOT_CHART
 from kaggle_pcosdata import load_pcos_data, calculate_symptom_percentages
 from reddit_api import fetch_reddit_posts, count_reddit_symptoms
+
+BAR_FIGSIZE = (11, 6)
+SCATTER_FIGSIZE = (8, 6)
+BAR_COLORS = ["lavender", "#FFB6C1"]
+SCATTER_COLOR = "purple"
+
 
 def prepare_medical_data():
     df = load_pcos_data()
@@ -25,7 +30,7 @@ def prepare_medical_data():
 
 
 def prepare_reddit_data():
-    posts = fetch_reddit_posts(total_limit=300)
+    posts = fetch_reddit_posts()
     reddit_df = count_reddit_symptoms(posts).copy()
 
     reddit_df["Symptom"] = reddit_df["Symptom"].replace({
@@ -38,7 +43,6 @@ def prepare_reddit_data():
         "Fast food": "Fast food"
     })
 
-    # keep only symptoms you want to compare directly
     keep_symptoms = [
         "Weight gain",
         "Hair growth",
@@ -49,7 +53,6 @@ def prepare_reddit_data():
     ]
     reddit_df = reddit_df[reddit_df["Symptom"].isin(keep_symptoms)]
 
-    # convert Reddit counts into percentage of total symptom mentions
     total_mentions = reddit_df["Count"].sum()
     reddit_df["Reddit"] = (reddit_df["Count"] / total_mentions) * 100
 
@@ -61,7 +64,6 @@ def compare_symptoms():
     reddit_df = prepare_reddit_data()
 
     merged = pd.merge(medical_df, reddit_df, on="Symptom", how="inner")
-
     merged = merged.sort_values(by="Medical", ascending=False)
 
     print("\nComparison table:")
@@ -69,8 +71,8 @@ def compare_symptoms():
 
     ax = merged.set_index("Symptom")[["Medical", "Reddit"]].plot(
         kind="bar",
-        figsize=(11, 6),
-        color=["lavender", "#FFB6C1"]
+        figsize=BAR_FIGSIZE,
+        color=BAR_COLORS
     )
 
     plt.title("Medical Study vs Reddit Symptom Comparison")
@@ -83,7 +85,7 @@ def compare_symptoms():
         ax.bar_label(container, fmt="%.1f", padding=3, fontsize=9)
 
     plt.tight_layout()
-    plt.savefig("comparison_chart.png")
+    plt.savefig(COMPARISON_CHART)
     plt.show()
 
     merged["Difference"] = merged["Reddit"] - merged["Medical"]
@@ -96,9 +98,10 @@ def compare_symptoms():
 
     return merged
 
+
 def plot_scatter_comparison(merged):
-    plt.figure(figsize=(8, 6))
-    plt.scatter(merged["Medical"], merged["Reddit"], color="purple")
+    plt.figure(figsize=SCATTER_FIGSIZE)
+    plt.scatter(merged["Medical"], merged["Reddit"], color=SCATTER_COLOR)
 
     for _, row in merged.iterrows():
         plt.annotate(
@@ -113,7 +116,7 @@ def plot_scatter_comparison(merged):
     plt.title("Scatterplot: Medical vs Reddit Symptoms")
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig("symptom_scatterplot.png")
+    plt.savefig(SCATTERPLOT_CHART)
     plt.show()
 
 

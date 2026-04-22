@@ -1,14 +1,20 @@
 #AI generated: portions of this file were created with assistance of ChatGPT
 
+import os
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 
-from kaggle_pcosdata import load_pcos_data
+from config import DATA_DIR, PCOS_DATA_FILE, RF_IMPORTANCE_CHART
 
-def run_medical_random_forest(file_path="../data/PCOS_data.csv"):
-    df = pd.read_csv(file_path)
-    df.columns = df.columns.str.strip()
+PLOT_SIZE = (10, 6)
+LINE_COLOR = "lavender"
+DOT_COLOR = "purple"
+
+
+def run_medical_random_forest(file_path=None):
+    if file_path is None:
+        file_path = os.path.join("..", DATA_DIR, PCOS_DATA_FILE)
 
     cols = [
         "PCOS (Y/N)",
@@ -22,6 +28,8 @@ def run_medical_random_forest(file_path="../data/PCOS_data.csv"):
         "Fast food (Y/N)"
     ]
 
+    df = pd.read_csv(file_path)
+    df.columns = df.columns.str.strip()
     df = df[cols].copy()
 
     X = df.drop(columns=["PCOS (Y/N)"])
@@ -34,7 +42,6 @@ def run_medical_random_forest(file_path="../data/PCOS_data.csv"):
     rf = RandomForestClassifier(random_state=42)
     rf.fit(X, y)
 
-
     feature_importance = pd.DataFrame({
         "Symptom": X.columns,
         "Importance": rf.feature_importances_
@@ -45,39 +52,34 @@ def run_medical_random_forest(file_path="../data/PCOS_data.csv"):
     print("\nRandom Forest Feature Importance:")
     print(feature_importance)
 
-    # Clean labels
     feature_importance["Symptom"] = feature_importance["Symptom"].str.replace("(Y/N)", "", regex=False)
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=PLOT_SIZE)
 
-    # Draw horizontal lines
     plt.hlines(
         y=feature_importance["Symptom"],
         xmin=0,
         xmax=feature_importance["Importance"],
-        color="lavender",
+        color=LINE_COLOR,
         linewidth=3
     )
 
-    # Draw dots
     plt.plot(
         feature_importance["Importance"],
         feature_importance["Symptom"],
         "o",
-        color="purple"
+        color=DOT_COLOR
     )
 
-    # Labels
     plt.xlabel("Importance Score")
     plt.ylabel("Symptom")
     plt.title("Random Forest: Most Predictive Medical Symptoms")
 
-    # Add values next to dots
     for i, value in enumerate(feature_importance["Importance"]):
         plt.text(value + 0.002, i, f"{value:.2f}", va='center')
 
     plt.tight_layout()
-    plt.savefig("medical_random_forest_lollipop.png")
+    plt.savefig(RF_IMPORTANCE_CHART)
     plt.show()
 
     return feature_importance

@@ -5,9 +5,25 @@ import time
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from config import (
+    REDDIT_SUBREDDIT,
+    REDDIT_TOTAL_LIMIT,
+    REDDIT_BATCH_SIZE,
+    REDDIT_USER_AGENT,
+    REDDIT_SYMPTOM_CHART,
+)
 
-def fetch_reddit_posts(subreddit="PCOS", total_limit=300, batch_size=100):
-    headers = {"User-Agent": "dsci510-project"}
+PLOT_SIZE = (10, 6)
+BAR_COLOR = "lavender"
+REQUEST_DELAY = 1
+
+
+def fetch_reddit_posts(
+    subreddit=REDDIT_SUBREDDIT,
+    total_limit=REDDIT_TOTAL_LIMIT,
+    batch_size=REDDIT_BATCH_SIZE
+):
+    headers = {"User-Agent": REDDIT_USER_AGENT}
     posts = []
     after = None
 
@@ -42,58 +58,50 @@ def fetch_reddit_posts(subreddit="PCOS", total_limit=300, batch_size=100):
         if not after:
             break
 
-        time.sleep(1)
+        time.sleep(REQUEST_DELAY)
 
     return posts
 
 
 def count_reddit_symptoms(posts):
-
     symptom_keywords = {
-
-    "Cycle irregularity": [
-        "irregular period", "irregular periods", "missed period",
-        "late period", "no period", "skipped period",
-        "cycle is off", "cycle irregular", "cycle problems",
-        "period hasn't come", "amenorrhea"
-    ],
-
-    "Weight gain": [
-        "weight gain", "gained weight", "put on weight",
-        "can't lose weight", "hard to lose weight",
-        "weight won't budge", "struggling to lose weight",
-        "gaining weight", "losing weight is hard"
-    ],
-
-    "Hair growth": [
-        "facial hair", "chin hair", "upper lip hair",
-        "body hair", "excess hair", "hair growth",
-        "hirsutism", "thick hair on face"
-    ],
-
-    "Skin darkening": [
-        "dark skin", "dark patches", "skin darkening",
-        "dark neck", "neck darkening", "acanthosis",
-        "dark underarms"
-    ],
-
-    "Hair loss": [
-        "hair loss", "losing hair", "hair falling out",
-        "thinning hair", "bald spots", "hair shedding",
-        "losing so much hair"
-    ],
-
-    "Pimples": [
-        "acne", "pimples", "breakouts",
-        "cystic acne", "bad acne", "skin breaking out"
-    ],
-
-    "Fast food": [
-        "fast food", "junk food", "bad diet",
-        "eating unhealthy", "diet issues", "sugar cravings",
-        "craving sugar", "carbs", "processed food"
-    ],
-}
+        "Cycle irregularity": [
+            "irregular period", "irregular periods", "missed period",
+            "late period", "no period", "skipped period",
+            "cycle is off", "cycle irregular", "cycle problems",
+            "period hasn't come", "amenorrhea"
+        ],
+        "Weight gain": [
+            "weight gain", "gained weight", "put on weight",
+            "can't lose weight", "hard to lose weight",
+            "weight won't budge", "struggling to lose weight",
+            "gaining weight", "losing weight is hard"
+        ],
+        "Hair growth": [
+            "facial hair", "chin hair", "upper lip hair",
+            "body hair", "excess hair", "hair growth",
+            "hirsutism", "thick hair on face"
+        ],
+        "Skin darkening": [
+            "dark skin", "dark patches", "skin darkening",
+            "dark neck", "neck darkening", "acanthosis",
+            "dark underarms"
+        ],
+        "Hair loss": [
+            "hair loss", "losing hair", "hair falling out",
+            "thinning hair", "bald spots", "hair shedding",
+            "losing so much hair"
+        ],
+        "Pimples": [
+            "acne", "pimples", "breakouts",
+            "cystic acne", "bad acne", "skin breaking out"
+        ],
+        "Fast food": [
+            "fast food", "junk food", "bad diet",
+            "eating unhealthy", "diet issues", "sugar cravings",
+            "craving sugar", "carbs", "processed food"
+        ],
+    }
 
     counts = {symptom: 0 for symptom in symptom_keywords}
 
@@ -112,19 +120,19 @@ def count_reddit_symptoms(posts):
 
 
 def plot_reddit_symptoms(result_df):
-    plt.figure(figsize=(10, 6))
-    plt.barh(result_df["Symptom"], result_df["Count"], color="lavender")
+    plt.figure(figsize=PLOT_SIZE)
+    plt.barh(result_df["Symptom"], result_df["Count"], color=BAR_COLOR)
     plt.xlabel("Number of Reddit Posts Mentioning Symptom")
     plt.ylabel("Symptom")
     plt.title("Most Common Symptoms Mentioned in r/PCOS Posts")
     plt.gca().invert_yaxis()
     plt.tight_layout()
-    plt.savefig("reddit_symptom_prevalence.png")
+    plt.savefig(REDDIT_SYMPTOM_CHART)
     plt.show()
 
 
 if __name__ == "__main__":
-    posts = fetch_reddit_posts(total_limit=300)
+    posts = fetch_reddit_posts()
 
     print(f"Fetched {len(posts)} Reddit posts.\n")
 

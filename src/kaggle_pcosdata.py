@@ -4,11 +4,15 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from config import DATA_DIR, PCOS_DATA_FILE, MEDICAL_SYMPTOM_CHART
 
-def load_pcos_data(file_path="../data/PCOS_data.csv"):
+PLOT_SIZE = (10, 6)
+BAR_COLOR = "lavender"
+
+
+def load_pcos_data(file_path=None):
     if file_path is None:
-        current_dir = os.path.dirname(__file__)
-        file_path = os.path.join(current_dir, "..", "data", "PCOS_data.csv")
+        file_path = os.path.join("..", DATA_DIR, PCOS_DATA_FILE)
 
     df = pd.read_csv(file_path)
     df.columns = df.columns.str.strip()
@@ -60,14 +64,14 @@ def plot_symptom_prevalence(result_df):
     result_df = result_df.copy()
     result_df["Symptom"] = result_df["Symptom"].str.replace("(Y/N)", "", regex=False)
 
-    plt.figure(figsize=(10, 6))
-    plt.barh(result_df["Symptom"], result_df["Percentage"], color="lavender")
+    plt.figure(figsize=PLOT_SIZE)
+    plt.barh(result_df["Symptom"], result_df["Percentage"], color=BAR_COLOR)
     plt.xlabel("Percentage of PCOS Patients (%)")
     plt.ylabel("Symptom")
     plt.title("Most Common Symptoms Among PCOS Patients")
     plt.gca().invert_yaxis()
     plt.tight_layout()
-    plt.savefig("pcos_symptom_prevalence.png")
+    plt.savefig(MEDICAL_SYMPTOM_CHART)
     plt.show()
 
 
