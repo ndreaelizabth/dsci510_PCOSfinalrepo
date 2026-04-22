@@ -111,7 +111,7 @@ def count_reddit_symptoms(posts):
 
 def plot_reddit_symptoms(result_df):
     plt.figure(figsize=(10, 6))
-    plt.barh(result_df["Symptom"], result_df["Count"])
+    plt.barh(result_df["Symptom"], result_df["Count"], color="lavender")
     plt.xlabel("Number of Reddit Posts Mentioning Symptom")
     plt.ylabel("Symptom")
     plt.title("Most Common Symptoms Mentioned in r/PCOS Posts")

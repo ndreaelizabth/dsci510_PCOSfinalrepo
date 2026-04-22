@@ -10,7 +10,7 @@ def load_pcos_data(file_path="data/PCOS_data.csv"):
         "Cycle(R/I)",
         "Cycle length(days)",
         "Weight gain(Y/N)",
-        "hair growth(Y/N)",
+        "Hair growth(Y/N)",
         "Skin darkening (Y/N)",
         "Hair loss(Y/N)",
         "Pimples(Y/N)",
@@ -53,7 +53,7 @@ def calculate_symptom_percentages(df):
 def plot_symptom_prevalence(result_df):
     plt.figure(figsize=(10, 6))
 
-    plt.barh(result_df["Symptom"], result_df["Percentage"])
+    plt.barh(result_df["Symptom"], result_df["Percentage"], color="lavender")
     plt.xlabel("Percentage of PCOS Patients (%)")
     plt.ylabel("Symptom")
     plt.title("Most Common Symptoms Among PCOS Patients")
