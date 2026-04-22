@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt 
 
 def load_pcos_data(file_path="data/PCOS_data.csv"):
     df = pd.read_csv(file_path)
@@ -51,16 +52,30 @@ def calculate_symptom_percentages(df):
 
     return result_df
 
+def plot_symptom_prevalence(result_df):
+    plt.figure(figsize=(10, 6))
 
-if __name__ == "__main__":
-    df = load_pcos_data()
-    result = calculate_symptom_percentages(df)
+    plt.barh(result_df["Symptom"], result_df["Percentage"])
+    plt.xlabel("Percentage of PCOS Patients (%)")
+    plt.ylabel("Symptom")
+    plt.title("Most Common Symptoms Among PCOS Patients")
 
-    print("\nSymptom prevalence among PCOS patients:")
-    print(result)
-    
+    plt.gca().invert_yaxis()  # highest at top
+
+    plt.tight_layout()
+    plt.savefig("pcos_symptom_prevalence.png")
+    plt.show()
+
 if __name__ == "__main__":
     df = load_pcos_data()
     print("Dataset loaded successfully.")
+
     print(f"Shape: {df.shape}")
     print(df.head())
+
+    result = calculate_symptom_percentages(df)
+    print("\nSymptom prevalence among PCOS patients:")
+    print(result)
+    plot_symptom_prevalence(result)
+   
+
