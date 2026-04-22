@@ -15,7 +15,6 @@ def load_pcos_data(file_path="data/PCOS_data.csv"):
         "Hair loss(Y/N)",
         "Pimples(Y/N)",
         "Fast food (Y/N)",
-        "Reg.Exercise(Y/N)"
     ]
 
     df = df[cols]
@@ -36,7 +35,6 @@ def calculate_symptom_percentages(df):
         "Hair loss(Y/N)",
         "Pimples(Y/N)",
         "Fast food (Y/N)",
-        "Reg.Exercise(Y/N)"
     ]
 
     results = {}

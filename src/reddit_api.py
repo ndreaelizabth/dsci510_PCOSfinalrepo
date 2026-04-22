@@ -46,7 +46,7 @@ def fetch_reddit_posts(subreddit="PCOS", total_limit=300, batch_size=100):
 
 
 def count_reddit_symptoms(posts):
-    
+
     symptom_keywords = {
 
     "Cycle irregularity": [
@@ -81,22 +81,16 @@ def count_reddit_symptoms(posts):
         "losing so much hair"
     ],
 
-    "Pimples / acne": [
+    "Pimples": [
         "acne", "pimples", "breakouts",
         "cystic acne", "bad acne", "skin breaking out"
     ],
 
-    "Fast food / diet": [
+    "Fast food": [
         "fast food", "junk food", "bad diet",
         "eating unhealthy", "diet issues", "sugar cravings",
         "craving sugar", "carbs", "processed food"
     ],
-
-    "Exercise / lifestyle": [
-        "exercise", "working out", "workout",
-        "gym", "walking", "walk",
-        "sedentary", "not active"
-    ]
 }
 
     counts = {symptom: 0 for symptom in symptom_keywords}
