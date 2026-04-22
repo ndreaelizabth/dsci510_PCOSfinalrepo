@@ -31,24 +31,25 @@ Required libraries include:
 - scikit-learn
 - requests
 - scipy
+- python-dotenv
 
 ## Running analysis
 
 From `src/` directory run:
 
-'python kaggle_pcosdata.py, 
-python reddit_api.py,
-python compare_symptoms.py,
-python medical_random_forest.py'
+`python src/main`
 
 Results will appear in `results/` folder. All obtained data will be stored in `data/`.
 
-The primary project workflow is run through `main.py`. The notebook is included only as an optional interactive visualization layer that calls existing functions from the `src/` modules.
+The primary project workflow is run through `main.py`. The notebook is included only as an optional interactive visualization layer that calls existing functions from the `src/` modules. Individual modules can also be run from the src/ directory if needed, but main.py is the primary entry point.
 
-Create a `.env` file based on `.env.example`.
+I also created a `.env` file based on `.env.example`.
 
 Example:
 PCOS_DATA_PATH=data/PCOS_data.csv
+
+## Notes
+An additional external data source was identified for future integration to further expand analysis of PCOS risk factors and validation across datasets. Link: https://www.kaggle.com/datasets/hasaanrana/diet-exercise-and-pcos-insights 
 
 ## AI generated:
 ChatGPT (OpenAI) was used as a coding assistant to help structure, debug, and refine portions of this project, including API handling, data processing, visualization, and model implementation. 
