@@ -7,7 +7,7 @@ This project explores factors that may predict Polycystic Ovary Syndrome (PCOS) 
 ## Data sources
 1. Kaggle PCOS dataset (CSV)
 2. Reddit API - r/PCOS subreddit
-
+ 
 ![Data Sources Table](docs/progress_report_datasource.png)
 
 
