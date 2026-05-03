@@ -102,15 +102,15 @@ def run_medical_random_forest(file_path=None):
         color=DOT_COLOR
     )
 
-    plt.xlabel("Feature importance score")
+    plt.xlabel("Feature importance score for predicting PCOS")
     plt.ylabel("Observable symptom(s)")
-    plt.title("Clinical Dataset: Observable Symptoms Predicting PCOS")
+    plt.title("Random Forest: Observable Symptoms Predicting PCOS")
 
     for i, value in enumerate(feature_importance["Importance"]):
         plt.text(value + 0.002, i, f"{value:.2f}", va="center")
     
     metrics_text = (
-        f"Random Forest Model Performance\n"
+        f"Random Forest Performance\n"
         f"Accuracy: {accuracy:.2f}\n"
         f"Precision: {precision:.2f}\n"
         f"Recall: {recall:.2f}\n"

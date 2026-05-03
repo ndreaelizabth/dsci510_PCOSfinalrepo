@@ -2,10 +2,11 @@
 
 import os
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+import matplotlib.pyplot as plt
+
+from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-import matplotlib.pyplot as plt
 
 from config import DATA_DIR, PCOS_DATA_FILE
 
@@ -14,7 +15,7 @@ LINE_COLOR = "lavender"
 DOT_COLOR = "purple"
 
 
-def run_medical_logistic_regression(file_path=None):
+def run_medical_xgboost(file_path=None):
     if file_path is None:
         file_path = os.path.join("..", DATA_DIR, PCOS_DATA_FILE)
 
@@ -37,9 +38,13 @@ def run_medical_logistic_regression(file_path=None):
     X = df.drop(columns=["PCOS (Y/N)"])
     y = df["PCOS (Y/N)"]
 
-    # Convert cycle regularity to numeric
+    # Convert Cycle(R/I) to numeric if it is stored as text
     if X["Cycle(R/I)"].dtype == object:
         X["Cycle(R/I)"] = X["Cycle(R/I)"].map({"R": 0, "I": 1})
+
+    # Make sure target is numeric for XGBoost
+    if y.dtype == object:
+        y = y.map({"N": 0, "Y": 1})
 
     X_train, X_test, y_train, y_test = train_test_split(
         X,
@@ -49,10 +54,19 @@ def run_medical_logistic_regression(file_path=None):
         stratify=y
     )
 
-    lr = LogisticRegression(max_iter=1000)
-    lr.fit(X_train, y_train)
+    xgb = XGBClassifier(
+        n_estimators=100,
+        learning_rate=0.1,
+        max_depth=3,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        eval_metric="logloss",
+        random_state=42
+    )
 
-    y_pred = lr.predict(X_test)
+    xgb.fit(X_train, y_train)
+
+    y_pred = xgb.predict(X_test)
 
     accuracy = accuracy_score(y_test, y_pred)
     error = 1 - accuracy
@@ -60,7 +74,7 @@ def run_medical_logistic_regression(file_path=None):
     recall = recall_score(y_test, y_pred, zero_division=0)
     f1 = f1_score(y_test, y_pred, zero_division=0)
 
-    print("\nLogistic Regression Model Performance:")
+    print("\nXGBoost Model Performance:")
     print(f"Accuracy: {accuracy:.2f}")
     print(f"Error: {error:.2f}")
     print(f"Precision: {precision:.2f}")
@@ -77,46 +91,46 @@ def run_medical_logistic_regression(file_path=None):
         "Pimples(Y/N)": "Pimples"
     }
 
-    coefficients = pd.DataFrame({
+    feature_importance = pd.DataFrame({
         "Symptom": X.columns,
-        "Coefficient": lr.coef_[0]
+        "Importance": xgb.feature_importances_
     })
 
-    coefficients["Symptom"] = coefficients["Symptom"].map(rename_map)
-    coefficients = coefficients.sort_values(by="Coefficient", ascending=True)
+    feature_importance["Symptom"] = feature_importance["Symptom"].map(rename_map)
+    feature_importance = feature_importance.sort_values(
+        by="Importance",
+        ascending=True
+    )
 
-    print("\nLogistic Regression Coefficients:")
-    print(coefficients)
+    print("\nXGBoost Feature Importance:")
+    print(feature_importance)
 
     plt.figure(figsize=PLOT_SIZE)
 
     plt.hlines(
-        y=coefficients["Symptom"],
+        y=feature_importance["Symptom"],
         xmin=0,
-        xmax=coefficients["Coefficient"],
+        xmax=feature_importance["Importance"],
         color=LINE_COLOR,
         linewidth=3
     )
 
     plt.plot(
-        coefficients["Coefficient"],
-        coefficients["Symptom"],
+        feature_importance["Importance"],
+        feature_importance["Symptom"],
         "o",
         color=DOT_COLOR
     )
 
-    plt.axvline(x=0, color="gray", linestyle="--", linewidth=1)
-
-    plt.xlabel("Coefficient value for predicted PCOS likelihood")
+    plt.xlabel("Feature importance score for predicting PCOS")
     plt.ylabel("Observable symptom(s)")
-    plt.title("Logistic Regression: Observable Symptoms Predicting PCOS")
+    plt.title("XGBoost: Observable Symptoms Predicting PCOS")
 
-    for i, value in enumerate(coefficients["Coefficient"]):
-        offset = 0.02 if value >= 0 else -0.15
-        plt.text(value + offset, i, f"{value:.2f}", va="center")
+    for i, value in enumerate(feature_importance["Importance"]):
+        plt.text(value + 0.002, i, f"{value:.2f}", va="center")
 
     metrics_text = (
-        f"Logistic Regression Performance\n"
+        f"XGBoost Model Performance\n"
         f"Accuracy: {accuracy:.2f}\n"
         f"Error: {error:.2f}\n"
         f"Precision: {precision:.2f}\n"
@@ -141,8 +155,8 @@ def run_medical_logistic_regression(file_path=None):
     plt.tight_layout()
     plt.show()
 
-    return coefficients
+    return feature_importance
 
 
 if __name__ == "__main__":
-    run_medical_logistic_regression()
+    run_medical_xgboost()
