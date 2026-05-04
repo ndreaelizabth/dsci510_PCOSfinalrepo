@@ -19,7 +19,7 @@ The analysis focuses on observable symptoms such as menstrual irregularity, weig
 |---|---|---|
 | Kaggle PCOS Medical Dataset | Provides structured medical data for patients with and without PCOS. | PCOS diagnosis, menstrual cycle irregularity, cycle length, weight gain, hair growth, skin darkening, hair loss, pimples |
 | Reddit API - r/PCOS | Provides patient-written posts that reflect real-life PCOS experiences and symptom discussions. | Post title, post body text, Reddit score, number of comments, date posted, post permalink |
-| Kaggle PCOS Lifestyle Dataset | Provides lifestyle behavior data related to PCOS diagnosis and management. | PCOS diagnosis, stress level, sleep hours, exercise frequency, sweets intake, fried food intake |
+| Kaggle PCOS Lifestyle Dataset | Provides lifestyle behavior data related to PCOS diagnosis and management. | PCOS diagnosis, stress level, exercise frequency, sweets intake, fried food intake |
 
 ## Analysis 
 
@@ -46,7 +46,7 @@ From the project root directory, run:
 
 ```bash
 pip install -r requirements.txt
-
+```
 Required libraries include:
 - requests
 - pandas
@@ -72,7 +72,7 @@ From the project root directory, run:
 
 ```bash
 python src/main.py
-
+```
 Results will appear in `results/` folder. All obtained data will be stored in `data/`.
 
 The primary project workflow is run through `main.py`. The notebook is included only as an optional interactive visualization layer that calls existing functions from the `src/` modules. Individual modules can also be run from the src/ directory if needed, but main.py is the primary entry point.
@@ -89,4 +89,11 @@ This project was developed with assistance from generative AI tools, including C
 
 I made a sincere effort to understand each part of this project and connect the work back to the concepts taught throughout the course lectures. 
 
-## Thank you for your time! Andrea Fernandez Cruz
+## PCOS care needs data, context, and empathy.
+
+Thank you for your time! 
+
+**Andrea Fernandez Cruz**  
+USC Communication Data Science Graduate Student
+University of Southern California  
+Spring 2026
