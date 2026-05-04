@@ -1,12 +1,5 @@
 #AI generated: portions of this file were created with assistance of ChatGPT
 
-from pathlib import Path
-from dotenv import load_dotenv
-
-# Load environment variables from .env
-env_path = Path(__file__).resolve().parent.parent / ".env"
-load_dotenv(dotenv_path=env_path)
-
 # Project directories
 DATA_DIR = "data"
 RESULTS_DIR = "results"
