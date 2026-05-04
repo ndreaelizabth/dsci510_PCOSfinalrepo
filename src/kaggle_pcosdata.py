@@ -2,7 +2,11 @@
 
 import os
 import pandas as pd
+
+matplotlib.use("Agg") # save the image, but do not open a chart window.
+
 import matplotlib.pyplot as plt
+
 
 from config import DATA_DIR, PCOS_DATA_FILE, MEDICAL_SYMPTOM_CHART
 
@@ -118,7 +122,7 @@ def plot_symptom_prevalence(result_df):
     plt.gca().invert_yaxis()
     plt.tight_layout()
     plt.savefig(MEDICAL_SYMPTOM_CHART)
-    plt.show()
+    plt.close()
 
 
 if __name__ == "__main__":
