@@ -2,16 +2,13 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.stats import spearmanr
 
-from config import COMPARISON_CHART, SCATTERPLOT_CHART
+from config import COMPARISON_CHART
 from kaggle_pcosdata import load_pcos_data, calculate_symptom_percentages
 from reddit_api import fetch_reddit_posts, count_reddit_symptoms
 
 BAR_FIGSIZE = (11, 6)
-SCATTER_FIGSIZE = (8, 6)
 BAR_COLORS = ["lavender", "#FFB6C1"]
-SCATTER_COLOR = "purple"
 
 KEEP_SYMPTOMS = [
     "Menstrual irregularity",
@@ -60,7 +57,6 @@ def prepare_medical_data():
     medical_df = calculate_symptom_percentages(df).copy()
 
     medical_df = standardize_symptom_names(medical_df)
-
     medical_df = medical_df[medical_df["Symptom"].isin(KEEP_SYMPTOMS)]
 
     # In case multiple columns map to the same category
@@ -77,7 +73,6 @@ def prepare_reddit_data():
     reddit_df = count_reddit_symptoms(posts).copy()
 
     reddit_df = standardize_symptom_names(reddit_df)
-
     reddit_df = reddit_df[reddit_df["Symptom"].isin(KEEP_SYMPTOMS)]
 
     if "Percentage_of_Posts" in reddit_df.columns:
@@ -141,49 +136,7 @@ def compare_symptoms():
     print("\nDifference table (Reddit Posts - Medical Dataset):")
     print(merged[["Symptom", "Difference"]])
 
-    plot_scatter_comparison(merged)
-    calculate_spearman_correlation(merged)
-
     return merged
-
-
-def plot_scatter_comparison(merged):
-    plt.figure(figsize=SCATTER_FIGSIZE)
-
-    plt.scatter(
-        merged["Medical Dataset"],
-        merged["Reddit Posts"],
-        color=SCATTER_COLOR
-    )
-
-    for _, row in merged.iterrows():
-        plt.annotate(
-            row["Symptom"],
-            (row["Medical Dataset"], row["Reddit Posts"]),
-            textcoords="offset points",
-            xytext=(5, 5)
-        )
-
-    plt.xlabel("Medical dataset: diagnosed PCOS patients with symptom (%)")
-    plt.ylabel("Reddit: r/PCOS posts mentioning symptom (%)")
-    plt.title("Medical Dataset vs Reddit: Observable Symptom Emphasis")
-    plt.grid(True, alpha=0.3)
-    plt.tight_layout()
-    plt.savefig(SCATTERPLOT_CHART)
-    plt.show()
-
-
-def calculate_spearman_correlation(merged):
-    corr, p_value = spearmanr(
-        merged["Medical Dataset"],
-        merged["Reddit Posts"]
-    )
-
-    print("\nSpearman Correlation Results:")
-    print(f"Correlation coefficient: {corr:.3f}")
-    print(f"P-value: {p_value:.3f}")
-
-    return corr, p_value
 
 
 if __name__ == "__main__":

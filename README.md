@@ -23,6 +23,8 @@ The analysis focuses on observable symptoms such as menstrual irregularity, weig
 
 ## Analysis 
 
+This project analyzes PCOS from three perspectives: medical records, Reddit patient discussions, and lifestyle behavior data. First, I cleaned the medical dataset and focused on observable symptoms such as menstrual irregularity, weight gain, hair growth, skin darkening, hair loss, and pimples. I calculated symptom prevalence among diagnosed PCOS patients and created charts to show which symptoms were most common. After, I collected r/PCOS Reddit posts using Python requests and Reddit’s public JSON endpoint. I used keyword matching to count how often the same symptom categories appeared in post titles and body text. I then compared the medical symptom percentages with Reddit discussion frequency using a grouped bar chart. I also trained 4 machine learning classifiers to test whether observable symptoms could predict PCOS diagnosis in the medical dataset. The models included Logistic Regression, Linear SVM, Random Forest, and XGBoost, and I evaluated them using accuracy, error, precision, recall, and F1-score. Finally, I analyzed lifestyle behavior factors from the lifestyle dataset, including stress level, exercise frequency, sweets intake, and fried food intake. These factors were analyzed separately from symptoms to provide additional context for PCOS management.
+
 ## Summary of Results
 
 The results show that medical records and patient discussions partially overlap, but they do not emphasize PCOS symptoms in the same way.
@@ -38,7 +40,8 @@ The results show that medical records and patient discussions partially overlap,
 Overall, the project shows that PCOS is better understood by combining medical data, patient experiences, and lifestyle context.
 
 ## How to run 
-No API keys are required to run this project. Reddit posts are fetched automatically from r/PCOS using Python `requests`.
+No API keys are required to run this project. 
+Reddit posts are fetched automatically from r/PCOS using Python `requests`.
 
 1. Install required Python packages using:
 
