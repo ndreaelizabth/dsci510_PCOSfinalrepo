@@ -7,7 +7,7 @@ Instructor: Dr. Alexey Tregubov
 
 This project explores how PCOS symptoms appear across medical records, Reddit patient discussions, and lifestyle data. Using a medical PCOS dataset, r/PCOS Reddit posts, and a lifestyle dataset, the project compares medically recorded observable symptoms with symptoms patients discuss online.
 
-The analysis focuses on observable symptoms such as menstrual irregularity, weight gain, hair growth, skin darkening, hair loss, and pimples. It also uses machine learning classifiers to test whether these symptoms can help predict PCOS diagnosis in the medical dataset. Finally, lifestyle factors such as stress, sleep, exercise frequency, sweets intake, and fried food intake are analyzed to provide additional context for PCOS management.
+The analysis focuses on observable symptoms such as menstrual irregularity, weight gain, hair growth, skin darkening, hair loss, and pimples. It also uses machine learning classifiers to test whether these symptoms can help predict PCOS diagnosis in the medical dataset. Finally, lifestyle factors such as stress, exercise, frequency, sweets intake, and fried food intake are analyzed to provide additional context for PCOS management.
 
 ## Data sources
 
