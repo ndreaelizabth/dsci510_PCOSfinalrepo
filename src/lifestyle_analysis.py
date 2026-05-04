@@ -4,7 +4,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from config import DATA_DIR, LIFESTYLE_DATA_FILE
+from config import LIFESTYLE_DATA_FILE, DATA_DIR, LIFESTYLE_BEHAVIOR_CHART
 
 PLOT_SIZE = (11, 6)
 BAR_COLORS = ["lavender", "#FFB6C1"]
@@ -178,8 +178,8 @@ def plot_lifestyle_behavior_factors(averages):
         ax.bar_label(container, fmt="%.2f", padding=3, fontsize=8)
 
     plt.tight_layout()
-    plt.savefig(LIFESTYLE_CHART)
-    plt.show()
+    plt.savefig(LIFESTYLE_BEHAVIOR_CHART)
+    plt.close()
 
 
 def run_lifestyle_analysis():

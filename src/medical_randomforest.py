@@ -148,8 +148,7 @@ def run_medical_random_forest(file_path=None):
 
     # Save chart
     plt.savefig(RF_IMPORTANCE_CHART)
-
-    plt.show()
+    plt.close()
 
     return feature_importance
 

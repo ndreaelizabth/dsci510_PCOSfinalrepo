@@ -26,6 +26,11 @@ MEDICAL_SYMPTOM_CHART = f"{RESULTS_DIR}/pcos_symptom_prevalence.png"
 REDDIT_SYMPTOM_CHART = f"{RESULTS_DIR}/reddit_symptom_prevalence.png"
 COMPARISON_CHART = f"{RESULTS_DIR}/comparison_chart.png"
 RF_IMPORTANCE_CHART = f"{RESULTS_DIR}/medical_random_forest_lollipop.png"
+LIFESTYLE_BEHAVIOR_CHART = f"{RESULTS_DIR}/lifestyle_behavior_factors.png"
+
+LOGISTIC_REGRESSION_CHART = f"{RESULTS_DIR}/medical_logistic_regression.png"
+SVM_CHART = f"{RESULTS_DIR}/medical_svm.png"
+XGBOOST_CHART = f"{RESULTS_DIR}/medical_xgboost.png"
 
 # Symptom labels used across analyses
 SYMPTOM_COLUMNS = [

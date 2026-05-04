@@ -12,7 +12,7 @@ The analysis focuses on observable symptoms such as menstrual irregularity, weig
 ## Data sources
 
 1. Kaggle PCOS Medical dataset (CSV): https://www.kaggle.com/datasets/shreyasvedpathak/pcos-dataset
-2. Reddit API - r/PCOS subreddit: https://www.kaggle.com/datasets/shreyasvedpathak/pcos-dataset
+2. Reddit API - r/PCOS subreddit: https://www.reddit.com/r/PCOS/
 3. Kaggle PCOS Lifestlye dataset (CSV): https://www.kaggle.com/datasets/hasaanrana/diet-exercise-and-pcos-insights?resource=download
  
 | Source | Description | Data Used |
@@ -76,9 +76,9 @@ From the project root directory, run:
 ```bash
 python src/main.py
 ```
-Results will appear in `src/results/` folder. All obtained data will be stored in `data/`.
+Generated charts will appear in the `src/results/` folder. 
 
-The primary project workflow is run through `main.py`. The notebook is included only as an optional interactive visualization layer that calls existing functions from the `src/` modules. Individual modules can also be run from the src/ directory if needed, but main.py is the primary entry point.
+The primary project workflow is run through `src/main.py`. The notebook is included only as an optional interactive visualization layer that calls existing functions from the `src/` modules. Individual modules can also be run from the src/ directory if needed, but main.py is the primary entry point.
 
 4. Open `results.ipynb` to view the analysis and visualizations.
 

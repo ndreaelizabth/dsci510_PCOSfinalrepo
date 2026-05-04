@@ -187,7 +187,7 @@ def plot_reddit_symptoms(result_df):
     plt.gca().invert_yaxis()
     plt.tight_layout()
     plt.savefig(REDDIT_SYMPTOM_CHART)
-    plt.show()
+    plt.close()
 
 
 if __name__ == "__main__":

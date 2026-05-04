@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import matplotlib.pyplot as plt
 
-from config import DATA_DIR, PCOS_DATA_FILE
+from config import DATA_DIR, PCOS_DATA_FILE, LOGISTIC_REGRESSION_CHART
 
 PLOT_SIZE = (10, 6)
 LINE_COLOR = "lavender"
@@ -139,7 +139,8 @@ def run_medical_logistic_regression(file_path=None):
     )
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig(LOGISTIC_REGRESSION_CHART)
+    plt.close()
 
     return coefficients
 

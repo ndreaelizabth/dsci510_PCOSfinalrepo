@@ -10,7 +10,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-from config import DATA_DIR, PCOS_DATA_FILE
+from config import DATA_DIR, PCOS_DATA_FILE, SVM_CHART
 
 PLOT_SIZE = (10, 6)
 LINE_COLOR = "lavender"
@@ -150,7 +150,8 @@ def run_medical_svm(file_path=None):
     )
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig(SVM_CHART)
+    plt.close()
 
     return coefficients
 

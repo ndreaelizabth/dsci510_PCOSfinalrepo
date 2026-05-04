@@ -129,7 +129,7 @@ def compare_symptoms():
 
     plt.tight_layout()
     plt.savefig(COMPARISON_CHART)
-    plt.show()
+    plt.close()
 
     merged["Difference"] = merged["Reddit Posts"] - merged["Medical Dataset"]
 
