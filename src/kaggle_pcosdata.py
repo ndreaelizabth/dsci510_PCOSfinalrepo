@@ -2,9 +2,6 @@
 
 import os
 import pandas as pd
-
-matplotlib.use("Agg") # save the image, but do not open a chart window.
-
 import matplotlib.pyplot as plt
 
 
