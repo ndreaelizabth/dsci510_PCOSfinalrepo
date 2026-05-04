@@ -89,7 +89,7 @@ This project was developed with assistance from generative AI tools, including C
 
 I made a sincere effort to understand each part of this project and connect the work back to the concepts taught throughout the course lectures. 
 
-## PCOS care needs data, context, and empathy.
+### PCOS care needs data, context, and empathy.
 
 Thank you for your time! 
 
