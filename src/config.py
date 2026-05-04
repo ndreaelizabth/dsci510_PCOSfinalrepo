@@ -4,7 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Load environment variables from .env
-env_path = Path(__file__).resolve().parent / ".env"
+env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
 # Project directories
@@ -21,12 +21,11 @@ REDDIT_TOTAL_LIMIT = 300
 REDDIT_BATCH_SIZE = 100
 REDDIT_USER_AGENT = "dsci510_PCOSfinal/1.0"
 
-# Output files
-MEDICAL_SYMPTOM_CHART = "pcos_symptom_prevalence.png"
-REDDIT_SYMPTOM_CHART = "reddit_symptom_prevalence.png"
-COMPARISON_CHART = "comparison_chart.png"
-SCATTERPLOT_CHART = "symptom_scatterplot.png"
-RF_IMPORTANCE_CHART = "medical_random_forest_lollipop.png"
+# Output files saved inside src/results/
+MEDICAL_SYMPTOM_CHART = f"{RESULTS_DIR}/pcos_symptom_prevalence.png"
+REDDIT_SYMPTOM_CHART = f"{RESULTS_DIR}/reddit_symptom_prevalence.png"
+COMPARISON_CHART = f"{RESULTS_DIR}/comparison_chart.png"
+RF_IMPORTANCE_CHART = f"{RESULTS_DIR}/medical_random_forest_lollipop.png"
 
 # Symptom labels used across analyses
 SYMPTOM_COLUMNS = [
@@ -37,7 +36,6 @@ SYMPTOM_COLUMNS = [
     "Skin darkening (Y/N)",
     "Hair loss(Y/N)",
     "Pimples(Y/N)",
-    "Fast food (Y/N)",
 ]
 
 # Clean display names
@@ -49,5 +47,4 @@ SYMPTOM_NAME_MAP = {
     "Skin darkening (Y/N)": "Skin darkening",
     "Hair loss(Y/N)": "Hair loss",
     "Pimples(Y/N)": "Pimples",
-    "Fast food (Y/N)": "Fast food",
 }

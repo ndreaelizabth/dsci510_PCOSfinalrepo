@@ -1,4 +1,5 @@
 __pycache__/
+data/
 .env
 *.csv
 *.json
@@ -6,3 +7,5 @@ __pycache__/
 .DS_Store
 *.pyc
 *.png
+
+

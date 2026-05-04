@@ -76,16 +76,20 @@ From the project root directory, run:
 ```bash
 python src/main.py
 ```
-Results will appear in `results/` folder. All obtained data will be stored in `data/`.
+Results will appear in `src/results/` folder. All obtained data will be stored in `data/`.
 
 The primary project workflow is run through `main.py`. The notebook is included only as an optional interactive visualization layer that calls existing functions from the `src/` modules. Individual modules can also be run from the src/ directory if needed, but main.py is the primary entry point.
 
 4. Open `results.ipynb` to view the analysis and visualizations.
 
-Note: Reddit posts are fetched automatically from r/PCOS using Python requests. Kaggle CSV files are not included in this repository. To run the project, download the datasets from Kaggle and place the CSV files in a local `data/` folder before running the pipeline.
-
 5. Optional environmental file 
 A .env.example file is included as a template.
+
+To run tests:
+
+```bash
+python src/tests.py
+```
 
 ## AI generated:
 This project was developed with assistance from generative AI tools, including ChatGPT by OpenAI. As a beginner in Python, I used these tools to help me understand code, organize the project structure, debug errors, and implement parts of the data collection and analysis process. AI was used primarily as a learning aid to support my understanding of programming and data analysis concepts. All AI-generated code sections are clearly labeled in the source files with the comment `# AI generated:`. 
