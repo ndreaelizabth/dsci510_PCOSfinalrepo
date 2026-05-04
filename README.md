@@ -60,9 +60,9 @@ Required libraries include:
 - python-dotenv # loads environment variables from a `.env` file if needed
 - jupyter
 
-2. Download the Kaggle medical and lifestyle datasets locally
+2. Download the Kaggle medical and lifestyle datasets locally. 
 
-Kaggle CSV files are not included in this repository because the final project instructions prohibit uploading data files. To run the project, download the medical and lifestyle datasets from Kaggle and place them in a local data/ folder.
+Kaggle CSV files are not included in this repository because the final project instructions prohibit uploading data files. To run the project, download the medical and lifestyle datasets from Kaggle and create local `data/` folder and place them there.
 
 Expected local files:
 
