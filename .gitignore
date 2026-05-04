@@ -1,18 +1,8 @@
-# Python
 __pycache__/
-*.pyc
-.DS_Store
-
-# Virtual environments
-venv/
-.venv/
-env/
-
-
-# Secrets
 .env
-kaggle.json
-
-# Project folders
-data/
-results/
+*.csv
+*.json
+*.db
+.DS_Store
+*.pyc
+*.png
