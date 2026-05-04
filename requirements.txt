@@ -4,5 +4,4 @@ matplotlib
 scipy
 scikit-learn
 xgboost
-python-dotenv
 jupyter
