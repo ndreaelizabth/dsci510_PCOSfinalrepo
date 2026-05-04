@@ -7,5 +7,7 @@ data/
 .DS_Store
 *.pyc
 *.png
+.ipynb_checkpoints/
+
 
 
