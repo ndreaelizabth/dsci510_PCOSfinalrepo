@@ -13,12 +13,13 @@ RESULTS_DIR = "results"
 
 # Data files
 PCOS_DATA_FILE = "PCOS_data.csv"
+LIFESTYLE_DATA_FILE = "diet_exercise_PCOSinsights.csv"
 
 # Reddit configuration
 REDDIT_SUBREDDIT = "PCOS"
 REDDIT_TOTAL_LIMIT = 300
 REDDIT_BATCH_SIZE = 100
-REDDIT_USER_AGENT = "dsci510-project"
+REDDIT_USER_AGENT = "dsci510_PCOSfinal/1.0"
 
 # Output files
 MEDICAL_SYMPTOM_CHART = "pcos_symptom_prevalence.png"

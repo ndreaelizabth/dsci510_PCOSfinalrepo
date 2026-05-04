@@ -1,4 +1,4 @@
-#AI generated: portions of this file were created with assistance of ChatGPT
+# AI generated: portions of this file were created with assistance of ChatGPT
 
 import requests
 import time
@@ -65,36 +65,79 @@ def fetch_reddit_posts(
 
 def count_reddit_symptoms(posts):
     symptom_keywords = {
-        
+        "Menstrual irregularity": [
+            "irregular period",
+            "irregular periods",
+            "missed period",
+            "missed periods",
+            "late period",
+            "late periods",
+            "no period",
+            "no periods",
+            "period stopped",
+            "periods stopped",
+            "long cycle",
+            "long cycles",
+            "short cycle",
+            "short cycles",
+            "cycle length",
+            "irregular cycle",
+            "irregular cycles",
+            "menstrual irregularity",
+            "menstrual cycle",
+            "period cycle"
+        ],
         "Weight gain": [
-            "weight gain", "gained weight", "put on weight",
-            "can't lose weight", "hard to lose weight",
-            "weight won't budge", "struggling to lose weight",
-            "gaining weight", "losing weight is hard"
+            "weight gain",
+            "gained weight",
+            "gaining weight",
+            "put on weight",
+            "can't lose weight",
+            "cant lose weight",
+            "cannot lose weight",
+            "hard to lose weight",
+            "weight won't budge",
+            "weight wont budge",
+            "struggling to lose weight",
+            "losing weight is hard"
         ],
         "Hair growth": [
-            "facial hair", "chin hair", "upper lip hair",
-            "body hair", "excess hair", "hair growth",
-            "hirsutism", "thick hair on face"
+            "facial hair",
+            "chin hair",
+            "upper lip hair",
+            "body hair",
+            "excess hair",
+            "hair growth",
+            "hirsutism",
+            "thick hair on face"
         ],
         "Skin darkening": [
-            "dark skin", "dark patches", "skin darkening",
-            "dark neck", "neck darkening", "acanthosis",
-            "dark underarms"
+            "dark skin",
+            "dark patches",
+            "skin darkening",
+            "dark neck",
+            "neck darkening",
+            "dark underarms",
+            "acanthosis",
+            "acanthosis nigricans"
         ],
         "Hair loss": [
-            "hair loss", "losing hair", "hair falling out",
-            "thinning hair", "bald spots", "hair shedding",
+            "hair loss",
+            "losing hair",
+            "hair falling out",
+            "thinning hair",
+            "bald spots",
+            "hair shedding",
             "losing so much hair"
         ],
         "Pimples": [
-            "acne", "pimples", "breakouts",
-            "cystic acne", "bad acne", "skin breaking out"
-        ],
-        "Fast food": [
-            "fast food", "junk food", "bad diet",
-            "eating unhealthy", "diet issues", "sugar cravings",
-            "craving sugar", "carbs", "processed food"
+            "acne",
+            "pimples",
+            "breakout",
+            "breakouts",
+            "cystic acne",
+            "bad acne",
+            "skin breaking out"
         ],
     }
 
@@ -107,19 +150,40 @@ def count_reddit_symptoms(posts):
             if any(keyword in text for keyword in keywords):
                 counts[symptom] += 1
 
-    result_df = pd.DataFrame(list(counts.items()), columns=["Symptom", "Count"])
-    result_df["Percentage_of_Posts"] = (result_df["Count"] / len(posts)) * 100
-    result_df = result_df.sort_values(by="Count", ascending=False)
+    result_df = pd.DataFrame(
+        list(counts.items()),
+        columns=["Symptom", "Count"]
+    )
+
+    if len(posts) > 0:
+        result_df["Percentage_of_Posts"] = (result_df["Count"] / len(posts)) * 100
+    else:
+        result_df["Percentage_of_Posts"] = 0
+
+    result_df = result_df.sort_values(
+        by="Percentage_of_Posts",
+        ascending=False
+    )
 
     return result_df
 
 
 def plot_reddit_symptoms(result_df):
     plt.figure(figsize=PLOT_SIZE)
-    plt.barh(result_df["Symptom"], result_df["Count"], color=BAR_COLOR)
-    plt.xlabel("Number of Reddit Posts Mentioning Symptom")
-    plt.ylabel("Symptom")
-    plt.title("Most Common Symptoms Mentioned in r/PCOS Posts")
+
+    plt.barh(
+        result_df["Symptom"],
+        result_df["Percentage_of_Posts"],
+        color=BAR_COLOR
+    )
+
+    plt.xlabel("Percentage of r/PCOS posts mentioning symptom (%)")
+    plt.ylabel("Patient-reported observable symptom category")
+    plt.title("Reddit r/PCOS: Most Discussed Observable PCOS Symptoms")
+
+    for i, value in enumerate(result_df["Percentage_of_Posts"]):
+        plt.text(value + 0.3, i, f"{value:.1f}%", va="center")
+
     plt.gca().invert_yaxis()
     plt.tight_layout()
     plt.savefig(REDDIT_SYMPTOM_CHART)
@@ -133,7 +197,7 @@ if __name__ == "__main__":
 
     print("Sample posts:")
     for i, post in enumerate(posts[:5]):
-        print(f"Post {i+1}")
+        print(f"Post {i + 1}")
         print(f"Title: {post['title']}")
         print(f"Body: {post['selftext'][:150] if post['selftext'] else ''}...")
         print(f"Comments count: {post['num_comments']}")
