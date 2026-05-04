@@ -1,7 +1,8 @@
 requests
 pandas
-pytrends
-sckit-learn
 matplotlib
-time
 scipy
+scikit-learn
+xgboost
+python-dotenv
+jupyter

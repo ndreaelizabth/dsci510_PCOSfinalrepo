@@ -1,57 +1,92 @@
 DSCI 510 – Spring 2026 – University of Southern California
 Instructor: Dr. Alexey Tregubov
 
-# Research on PCOS: Using Clinical Data and Reddit Analysis
-This project explores factors that may predict Polycystic Ovary Syndrome (PCOS) using clinical and public data sources. This project compares clinical PCOS data with real-world patient discussions from Reddit to implement data analysis and machine learning.
+# PCOS Symptoms: Medical Records vs. Patient Voices
+
+## Introduction
+
+This project explores how PCOS symptoms appear across medical records, Reddit patient discussions, and lifestyle data. Using a medical PCOS dataset, r/PCOS Reddit posts, and a lifestyle dataset, the project compares medically recorded observable symptoms with symptoms patients discuss online.
+
+The analysis focuses on observable symptoms such as menstrual irregularity, weight gain, hair growth, skin darkening, hair loss, and pimples. It also uses machine learning classifiers to test whether these symptoms can help predict PCOS diagnosis in the medical dataset. Finally, lifestyle factors such as stress, sleep, exercise frequency, sweets intake, and fried food intake are analyzed to provide additional context for PCOS management.
 
 ## Data sources
-1. Kaggle PCOS dataset (CSV)
-2. Reddit API - r/PCOS subreddit
+
+1. Kaggle PCOS Medical dataset (CSV): https://www.kaggle.com/datasets/shreyasvedpathak/pcos-dataset
+2. Reddit API - r/PCOS subreddit: https://www.kaggle.com/datasets/shreyasvedpathak/pcos-dataset
+3. Kaggle PCOS Lifestlye dataset (CSV): https://www.kaggle.com/datasets/hasaanrana/diet-exercise-and-pcos-insights?resource=download
  
-![Data Sources Table](docs/progress_report_datasource.png)
+| Source | Description | Data Used |
+|---|---|---|
+| Kaggle PCOS Medical Dataset | Provides structured medical data for patients with and without PCOS. | PCOS diagnosis, menstrual cycle irregularity, cycle length, weight gain, hair growth, skin darkening, hair loss, pimples |
+| Reddit API - r/PCOS | Provides patient-written posts that reflect real-life PCOS experiences and symptom discussions. | Post title, post body text, Reddit score, number of comments, date posted, post permalink |
+| Kaggle PCOS Lifestyle Dataset | Provides lifestyle behavior data related to PCOS diagnosis and management. | PCOS diagnosis, stress level, sleep hours, exercise frequency, sweets intake, fried food intake |
 
+## Analysis 
 
-## Results
-- Identified most common symptoms among PCOS patients (clinical data)
-- Extracted and ranked symptoms discussed on Reddit
-- Compared clinical prevalence vs patient discussion
-- Found differences between what is clinically important vs commonly discussed
-- Used Random Forest to identify most predictive symptoms for PCOS
-- Measured alignment between sources using scatterplot and correlation
+## Summary of Results
 
-## Installation
-- No API keys are required to run this project.
-- Install required Python packages using:
+The results show that medical records and patient discussions partially overlap, but they do not emphasize PCOS symptoms in the same way.
 
+- In the medical dataset, menstrual irregularity was the most common observable symptom among diagnosed PCOS patients.
+- In r/PCOS Reddit posts, hair growth was the most discussed symptom, even though it was one of the least common symptoms in the medical dataset.
+- The medical vs Reddit comparison suggests that some symptoms may carry more emotional or daily-life weight for patients than their medical prevalence alone shows.
+- Classifier models showed that observable symptoms can help predict PCOS diagnosis in the medical dataset.
+- XGBoost had the strongest overall model performance, while Random Forest provided a clear feature-importance ranking.
+- Tree-based models identified skin darkening and hair growth as important predictors.
+- The lifestyle analysis showed that people with PCOS had higher normalized scores for stress, sweets intake, and fried food intake, while exercise frequency was slightly lower.
+
+Overall, the project shows that PCOS is better understood by combining medical data, patient experiences, and lifestyle context.
+
+## How to run 
+No API keys are required to run this project. Reddit posts are fetched automatically from r/PCOS using Python `requests`.
+
+1. Install required Python packages using:
+
+From the project root directory, run:
+
+```bash
 pip install -r requirements.txt
 
 Required libraries include:
+- requests
 - pandas
 - matplotlib
-- scikit-learn
-- requests
 - scipy
-- python-dotenv
+- scikit-learn
+- xgboost
+- python-dotenv # loads environment variables from a `.env` file if needed
+- jupyter
 
-## Running analysis
+2. Download the Kaggle medical and lifestyle datasets locally
 
-From `src/` directory run:
+Kaggle CSV files are not included in this repository because the final project instructions prohibit uploading data files. To run the project, download the medical and lifestyle datasets from Kaggle and place them in a local data/ folder.
 
-`python src/main`
+Expected local files:
+
+data/PCOS_data.csv
+data/diet_exercise_PCOSinsights.csv
+
+3. Run the main pipeline: 
+
+From the project root directory, run:
+
+```bash
+python src/main.py
 
 Results will appear in `results/` folder. All obtained data will be stored in `data/`.
 
 The primary project workflow is run through `main.py`. The notebook is included only as an optional interactive visualization layer that calls existing functions from the `src/` modules. Individual modules can also be run from the src/ directory if needed, but main.py is the primary entry point.
 
-I also created a `.env` file based on `.env.example`.
+4. Open `results.ipynb` to view the analysis and visualizations.
 
-Example:
-PCOS_DATA_PATH=data/PCOS_data.csv
+Note: Reddit posts are fetched automatically from r/PCOS using Python requests. Kaggle CSV files are not included in this repository. To run the project, download the datasets from Kaggle and place the CSV files in a local `data/` folder before running the pipeline.
 
-## Notes
-An additional external data source was identified for future integration to further expand analysis of PCOS risk factors and validation across datasets. Link: https://www.kaggle.com/datasets/hasaanrana/diet-exercise-and-pcos-insights 
+5. Optional environmental file 
+A .env.example file is included as a template.
 
 ## AI generated:
-ChatGPT (OpenAI) was used as a coding assistant to help structure, debug, and refine portions of this project, including API handling, data processing, visualization, and model implementation. 
+This project was developed with assistance from generative AI tools, including ChatGPT by OpenAI. As a beginner in Python, I used these tools to help me understand code, organize the project structure, debug errors, and implement parts of the data collection and analysis process. AI was used primarily as a learning aid to support my understanding of programming and data analysis concepts. All AI-generated code sections are clearly labeled in the source files with the comment `# AI generated:`. 
 
-All generated outputs were reviewed, modified, and integrated by the author, who ensured complete understanding of the final code.
+I made a sincere effort to understand each part of this project and connect the work back to the concepts taught throughout the course lectures. 
+
+## Thank you for your time! Andrea Fernandez Cruz
