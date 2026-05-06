@@ -1,9 +1,6 @@
-# AI generated: portions of this file were created with assistance of ChatGPT
-
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-
 
 from config import DATA_DIR, PCOS_DATA_FILE, MEDICAL_SYMPTOM_CHART
 

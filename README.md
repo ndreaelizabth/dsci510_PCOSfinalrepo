@@ -74,7 +74,8 @@ data/diet_exercise_PCOSinsights.csv
 From the project root directory, run:
 
 ```bash
-python src/main.py
+cd src
+python main.py
 ```
 Generated charts will appear in the `src/results/` folder. 
 

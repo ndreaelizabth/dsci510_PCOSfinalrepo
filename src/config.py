@@ -1,6 +1,7 @@
 #AI generated: portions of this file were created with assistance of ChatGPT
 
 # Project directories
+
 DATA_DIR = "data"
 RESULTS_DIR = "results"
 
