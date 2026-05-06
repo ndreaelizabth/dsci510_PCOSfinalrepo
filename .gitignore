@@ -1,12 +1,23 @@
+# Python/Jupyter basics
 __pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.env
+
+# Project-specific files
 data/
 *.csv
+*.xlsx
 *.json
-*.db
+
+# Mac files
 .DS_Store
-*.pyc
-*.png
-.ipynb_checkpoints/
+
+
 
 
 
