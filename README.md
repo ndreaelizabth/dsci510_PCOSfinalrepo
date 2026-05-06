@@ -81,7 +81,7 @@ Generated charts will appear in the `src/results/` folder.
 
 The primary project workflow is run through `src/main.py`. The notebook is included only as an optional interactive visualization layer that calls existing functions from the `src/` modules. Individual modules can also be run from the src/ directory if needed, but main.py is the primary entry point.
 
-4. Open `results.ipynb` to view the analysis and visualizations.
+4. Open `results.ipynb` to view the analysis and visualizations. Please run the main piplline before doing so.
 
 5. Optional environmental file 
 A .env.example file is included as a template.

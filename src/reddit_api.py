@@ -10,6 +10,7 @@ from config import (
     REDDIT_TOTAL_LIMIT,
     REDDIT_BATCH_SIZE,
     REDDIT_USER_AGENT,
+    REDDIT_JSON_URL,
     REDDIT_SYMPTOM_CHART,
 )
 
@@ -31,7 +32,7 @@ def fetch_reddit_posts(
         remaining = total_limit - len(posts)
         current_batch_size = min(batch_size, remaining)
 
-        url = f"https://www.reddit.com/r/{subreddit}/new.json?limit={current_batch_size}"
+        url = f"{REDDIT_JSON_URL}?limit={current_batch_size}"
         if after:
             url += f"&after={after}"
 
